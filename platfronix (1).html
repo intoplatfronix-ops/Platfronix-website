@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Platfronix | Creative Meets Strategy — Digital Solutions Agency</title>
+<meta name="description" content="Platfronix is a full-service digital solutions agency helping businesses grow with confidence through premium website design, branding, and advertising." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314120F'/%3E%3Cpath d='M16 5 L25.5 9.6 V17.2 C25.5 22.3 21.3 26.5 16 28 C10.7 26.5 6.5 22.3 6.5 17.2 V9.6 Z' fill='none' stroke='%23C9A24B' stroke-width='1.6'/%3E%3Cpath d='M16 12.5 L20.4 17.2 L16 21.9 L11.6 17.2 Z' fill='none' stroke='%23C9A24B' stroke-width='1.2'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CSS v4 — browser build -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style type="text/tailwindcss">
+  @theme {
+    --color-ink: #14120F;
+    --color-panel: #1B1814;
+    --color-panel-2: #232019;
+    --color-line: #322B21;
+    --color-mist: #A79D8D;
+    --color-parchment: #F4F0E8;
+
+    --color-gold-300: #EAD09A;
+    --color-gold-400: #DBB56E;
+    --color-gold-500: #C9A24B;
+    --color-gold-600: #A07E34;
+
+    --color-whatsapp: #25D366;
+    --color-whatsapp-dark: #128C7E;
+
+    --color-azure-400: #83AAFF;
+    --color-azure-500: #4C8DFF;
+    --color-azure-600: #2E68D9;
+
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Inter", sans-serif;
+  }
+</style>
+
+<!-- Hand-authored styling that Tailwind's utility layer doesn't need to touch -->
+<style>
+  * { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
+  section[id], header[id] { scroll-margin-top: 5.25rem; }
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-parchment);
+    font-family: var(--font-body), sans-serif;
+  }
+
+  ::selection { background: rgba(201,162,75,.35); color: var(--color-parchment); }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-ink); }
+  ::-webkit-scrollbar-thumb { background: var(--color-gold-600); border-radius: 999px; border: 2px solid var(--color-ink); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-400);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .text-gradient-gold {
+    background-image: linear-gradient(120deg, var(--color-gold-300), var(--color-gold-600));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .95rem 1.85rem;
+    border-radius: 999px;
+    font-family: var(--font-display), sans-serif;
+    font-weight: 600;
+    font-size: .95rem;
+    letter-spacing: .01em;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease, color .3s ease, background .3s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn svg { width: 1.15rem; height: 1.15rem; flex-shrink: 0; }
+  .btn-primary {
+    background-image: linear-gradient(135deg, var(--color-whatsapp), var(--color-whatsapp-dark));
+    color: var(--color-parchment);
+    box-shadow: 0 10px 28px -10px rgba(37,211,102,.55);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 32px -8px rgba(37,211,102,.65); }
+  .btn-secondary {
+    border-color: rgba(244,240,232,.22);
+    color: var(--color-parchment);
+    background: rgba(244,240,232,.03);
+  }
+  .btn-secondary:hover { border-color: var(--color-gold-400); color: var(--color-gold-300); transform: translateY(-3px); }
+  .btn-sm { padding: .6rem 1.15rem; font-size: .8rem; }
+
+  /* Card */
+  .card {
+    border: 1px solid var(--color-line);
+    background: linear-gradient(160deg, var(--color-panel), var(--color-panel-2));
+    border-radius: 1.1rem;
+    position: relative;
+    transition: border-color .35s ease, transform .35s ease, box-shadow .35s ease;
+  }
+  .card:hover {
+    border-color: rgba(201,162,75,.45);
+    transform: translateY(-5px);
+    box-shadow: 0 24px 48px -24px rgba(0,0,0,.6);
+  }
+  .card::before {
+    content: "";
+    position: absolute; top: -1px; left: -1px;
+    width: 22px; height: 22px;
+    border-top: 1.5px solid var(--color-gold-400);
+    border-left: 1.5px solid var(--color-gold-400);
+    border-top-left-radius: 1.1rem;
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  .card:hover::before { opacity: 1; }
+
+  /* Hexagon icon badges — echo the crest facets everywhere icons appear */
+  .badge-hex {
+    width: 3.5rem; height: 3.5rem;
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(50% 2%, 93% 26%, 93% 74%, 50% 98%, 7% 74%, 7% 26%);
+    background: linear-gradient(150deg, rgba(201,162,75,.20), rgba(201,162,75,.04));
+    border: 1px solid rgba(201,162,75,.35);
+    color: var(--color-gold-400);
+    transition: all .4s ease;
+    flex-shrink: 0;
+  }
+  .badge-hex svg { width: 1.5rem; height: 1.5rem; }
+  .card:hover .badge-hex {
+    background: linear-gradient(150deg, rgba(201,162,75,.32), rgba(201,162,75,.08));
+    border-color: rgba(201,162,75,.65);
+    transform: rotate(8deg) scale(1.06);
+  }
+
+  .badge-hex-filled {
+    width: 4.25rem; height: 4.25rem;
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(50% 2%, 93% 26%, 93% 74%, 50% 98%, 7% 74%, 7% 26%);
+    background-image: linear-gradient(150deg, var(--color-gold-400), var(--color-gold-600));
+    color: var(--color-ink);
+    font-family: var(--font-display), sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  /* Nav */
+  #siteHeader { transition: background-color .4s ease, border-color .4s ease, backdrop-filter .4s ease, box-shadow .4s ease; }
+  #siteHeader.nav-scrolled {
+    background-color: rgba(20,18,15,.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-line);
+    box-shadow: 0 12px 30px -20px rgba(0,0,0,.7);
+  }
+  .nav-link { position: relative; color: var(--color-mist); transition: color .3s ease; }
+  .nav-link::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; height: 1px; width: 0;
+    background: var(--color-gold-400); transition: width .3s ease;
+  }
+  .nav-link:hover { color: var(--color-parchment); }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Ambient glow field for hero */
+  .glow { position: absolute; border-radius: 999px; filter: blur(90px); pointer-events: none; }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0,0); }
+    50% { transform: translate(24px,-30px); }
+  }
+  .animate-drift { animation: drift 14s ease-in-out infinite; }
+  .animate-drift-slow { animation: drift 20s ease-in-out infinite reverse; }
+
+  @keyframes softPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,.45); }
+    50% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+  }
+  .pulse-ring { animation: softPulse 2.8s ease-in-out infinite; }
+
+  @keyframes bobY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  .animate-bob { animation: bobY 2.2s ease-in-out infinite; }
+
+  /* Form fields */
+  .field {
+    width: 100%;
+    background: rgba(244,240,232,.04);
+    border: 1px solid var(--color-line);
+    border-radius: .7rem;
+    padding: .85rem 1rem;
+    color: var(--color-parchment);
+    font-family: var(--font-body), sans-serif;
+    font-size: .95rem;
+    transition: border-color .3s ease, background .3s ease;
+  }
+  .field::placeholder { color: rgba(167,157,141,.7); }
+  .field:focus { border-color: var(--color-gold-500); background: rgba(244,240,232,.06); outline: none; }
+  .field-label { font-size: .8rem; color: var(--color-mist); margin-bottom: .4rem; display: block; letter-spacing: .02em; }
+
+  /* Live review star-rating selector */
+  .star-rate { display: inline-flex; gap: .35rem; }
+  .star-rate button {
+    background: none; border: none; padding: 0; cursor: pointer; line-height: 0;
+    color: rgba(167,157,141,.45); transition: color .2s ease, transform .2s ease;
+  }
+  .star-rate button svg { width: 1.65rem; height: 1.65rem; }
+  .star-rate button:hover { transform: scale(1.12); }
+  .star-rate button.is-active,
+  .star-rate button.is-hover { color: var(--color-gold-400); }
+
+  /* Newly submitted review card entrance */
+  @keyframes reviewIn {
+    from { opacity: 0; transform: translateY(14px) scale(.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .review-enter { animation: reviewIn .55s ease forwards; }
+
+  /* Timeline */
+  .timeline-track { position: absolute; left: 27px; top: 0; bottom: 0; width: 2px; background: var(--color-line); }
+  .timeline-fill {
+    position: absolute; left: 27px; top: 0; width: 2px; height: 0%;
+    background-image: linear-gradient(var(--color-gold-300), var(--color-gold-600));
+  }
+
+  @media (max-width: 767px) {
+    .timeline-track, .timeline-fill { left: 23px; }
+  }
+
+  /* Quote mark */
+  .quote-mark { color: rgba(201,162,75,.28); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  }
+</style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+<!-- Floating WhatsApp button -->
+<a href="https://wa.me/7996607257" target="_blank" rel="noopener" aria-label="Chat with Platfronix on WhatsApp"
+   class="fixed bottom-6 right-5 sm:right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full pulse-ring"
+   style="background: linear-gradient(135deg, var(--color-whatsapp), var(--color-whatsapp-dark)); color: var(--color-parchment);">
+  <svg viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+    <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/>
+    <path d="M12.05 21.79a9.83 9.83 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.23C2.18 6.44 6.6 2 12.05 2c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 012.89 6.99c0 5.45-4.44 9.9-9.88 9.9zm8.41-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.15 1.59 5.95L0 24l6.31-1.65a11.88 11.88 0 005.68 1.45h.01c6.55 0 11.9-5.34 11.9-11.9a11.82 11.82 0 00-3.44-8.41z"/>
+  </svg>
+</a>
+
+<!-- Back to top -->
+<button id="backToTop" aria-label="Back to top"
+        class="fixed bottom-6 left-5 sm:left-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 opacity-0 pointer-events-none"
+        style="background: rgba(27,24,20,.85); border-color: var(--color-line); color: var(--color-gold-400); backdrop-filter: blur(6px);">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- NAV -->
+<header id="siteHeader" class="fixed top-0 inset-x-0 z-40">
+  <nav class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 flex items-center justify-between h-20">
+    <a href="#home" class="flex items-center gap-2.5 shrink-0">
+      <span class="relative inline-flex h-10 w-10 items-center justify-center">
+        <img src="Platfronix Elegant Crest Logo.png" alt="Platfronix crest logo" class="h-10 w-10 object-contain"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <svg viewBox="0 0 100 100" class="h-10 w-10" style="display:none" aria-hidden="true">
+          <path d="M50 4 L88 20 V54 C88 76 71 93 50 100 C29 93 12 76 12 54 V20 Z" fill="none" stroke="#C9A24B" stroke-width="3.2"/>
+          <path d="M50 28 L70 54 L50 80 L30 54 Z" fill="none" stroke="#C9A24B" stroke-width="2.4"/>
+          <circle cx="50" cy="54" r="3.6" fill="#C9A24B"/>
+        </svg>
+      </span>
+      <span style="font-family: var(--font-display), sans-serif;" class="text-xl font-semibold tracking-wide text-parchment">Platfronix</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-9">
+      <a href="#home" class="nav-link text-sm font-medium">Home</a>
+      <a href="#services" class="nav-link text-sm font-medium">Services</a>
+      <a href="#contact" class="nav-link text-sm font-medium">Contact</a>
+    </div>
+
+    <div class="hidden md:block">
+      <a href="https://wa.me/7996607257" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12.05 21.79a9.83 9.83 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.23C2.18 6.44 6.6 2 12.05 2c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 012.89 6.99c0 5.45-4.44 9.9-9.88 9.9zm8.41-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.15 1.59 5.95L0 24l6.31-1.65a11.88 11.88 0 005.68 1.45h.01c6.55 0 11.9-5.34 11.9-11.9a11.82 11.82 0 00-3.44-8.41z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+
+    <button id="navToggle" aria-label="Toggle menu" class="md:hidden text-parchment">
+      <svg id="iconBars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-7 w-7"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+      <svg id="iconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-7 w-7 hidden"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobileMenu" class="hidden md:hidden border-t border-line" style="background: rgba(20,18,15,.98);">
+    <div class="px-6 py-6 flex flex-col gap-5">
+      <a href="#home" class="text-parchment text-base font-medium">Home</a>
+      <a href="#services" class="text-parchment text-base font-medium">Services</a>
+      <a href="#contact" class="text-parchment text-base font-medium">Contact</a>
+      <a href="https://wa.me/7996607257" target="_blank" rel="noopener" class="btn btn-primary btn-sm w-fit mt-2">WhatsApp Us</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+  <div class="glow h-96 w-96 -top-10 -left-16 animate-drift" style="background: rgba(201,162,75,.16);"></div>
+  <div class="glow h-96 w-96 top-1/3 -right-24 animate-drift-slow" style="background: rgba(76,141,255,.12);"></div>
+
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 pt-28 pb-16 grid lg:grid-cols-[1.1fr_.9fr] gap-14 items-center relative z-10 w-full">
+    <div>
+      <div id="heroEyebrow" class="flex items-center gap-2 mb-6">
+        <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="var(--color-gold-400)"><path d="M12 2l2.5 7h7.5l-6 5 2.5 7-6.5-4.5L5 21l2.5-7-6-5h7.5z"/></svg>
+        <span style="font-family: var(--font-display), sans-serif;" class="text-xs font-semibold uppercase tracking-[.28em] text-gold-400">Digital Solutions Agency</span>
+      </div>
+
+      <h1 style="font-family: var(--font-display), sans-serif;" class="text-[2.6rem] leading-[1.08] sm:text-6xl sm:leading-[1.05] lg:text-[4.2rem] lg:leading-[1.03] font-semibold text-parchment">
+        <span class="hero-line block overflow-hidden"><span class="inline-block">Where Creativity</span></span>
+        <span class="hero-line block overflow-hidden"><span class="inline-block">Meets <em class="not-italic text-gradient-gold">Strategy</em></span></span>
+      </h1>
+
+      <p id="heroSub" class="mt-7 max-w-lg text-lg text-mist leading-relaxed">
+        Helping businesses grow with confidence through premium digital solutions.
+      </p>
+
+      <div id="heroButtons" class="mt-10 flex flex-wrap items-center gap-4">
+        <a href="https://wa.me/7996607257" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12.05 21.79a9.83 9.83 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.23C2.18 6.44 6.6 2 12.05 2c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 012.89 6.99c0 5.45-4.44 9.9-9.88 9.9zm8.41-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.15 1.59 5.95L0 24l6.31-1.65a11.88 11.88 0 005.68 1.45h.01c6.55 0 11.9-5.34 11.9-11.9a11.82 11.82 0 00-3.44-8.41z"/></svg>
+          WhatsApp Us
+        </a>
+        <a href="mailto:into.platfronix@gmail.com" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M2.5 6.5l9.5 7 9.5-7"/></svg>
+          Email Us
+        </a>
+      </div>
+    </div>
+
+    <!-- Signature crest illustration -->
+    <div class="relative flex items-center justify-center order-first lg:order-last">
+      <svg id="heroCrest" viewBox="0 0 300 300" class="h-64 w-64 sm:h-80 sm:w-80 lg:h-[26rem] lg:w-[26rem]">
+        <circle cx="150" cy="156" r="138" fill="none" stroke="#C9A24B" stroke-width="1" stroke-dasharray="2 7" opacity="0.55" class="crest-line"/>
+        <path class="crest-line" d="M150 12 L264 60 V162 C264 228 213 279 150 300 C87 279 36 228 36 162 V60 Z" fill="none" stroke="#C9A24B" stroke-width="1.6"/>
+        <path class="crest-line" d="M150 84 L210 162 L150 240 L90 162 Z" fill="none" stroke="#C9A24B" stroke-width="1.4"/>
+        <path class="crest-line" d="M150 84 L150 12" stroke="#C9A24B" stroke-width="1.2"/>
+        <path class="crest-line" d="M210 162 L264 162" stroke="#C9A24B" stroke-width="1.2"/>
+        <path class="crest-line" d="M90 162 L36 162" stroke="#C9A24B" stroke-width="1.2"/>
+        <path class="crest-line" d="M150 240 L150 300" stroke="#C9A24B" stroke-width="1.2"/>
+        <path id="crestCenter" d="M150 144 L162 156 L150 168 L138 156 Z" fill="#C9A24B" opacity="0"/>
+      </svg>
+    </div>
+  </div>
+
+  <a href="#about" aria-label="Scroll to learn more" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-mist animate-bob hidden sm:block">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/></svg>
+  </a>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-24 lg:py-32 bg-ink">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 grid lg:grid-cols-[1.15fr_.85fr] gap-16 items-start">
+    <div class="reveal">
+      <span style="font-family: var(--font-display), sans-serif;" class="text-xs font-semibold uppercase tracking-[.28em] text-gold-400">About Platfronix</span>
+      <h2 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-parchment leading-tight">
+        A Digital Partner Built Around Your Brand
+      </h2>
+
+      <div class="mt-8 space-y-5 text-mist text-base sm:text-lg leading-relaxed">
+        <p>Welcome to Platfronix, where creativity meets strategy to help businesses grow with confidence. We are a full-service digital solutions agency dedicated to helping startups, small businesses, and established companies build a strong brand identity and achieve long-term success.</p>
+        <p>Our expertise includes professional website design and development, custom logo creation, business banner design, business card design, and creative advertising. We combine innovative ideas, modern technology, and data-driven strategies to deliver solutions that not only look great but also generate real business results.</p>
+        <p>At Platfronix, we understand that every business is unique. That's why we take the time to understand your goals, target audience, and vision before creating tailored solutions that reflect your brand and support your growth.</p>
+        <p>Our mission is to provide high-quality, affordable, and reliable digital services that help businesses establish a strong online presence, attract more customers, and stay ahead in a competitive market. We believe that great design, effective marketing, and exceptional customer service are the foundation of every successful brand.</p>
+        <p>Whether you need a professional website, memorable branding, or impactful advertising, Platfronix is your trusted partner every step of the way.</p>
+        <p class="text-parchment font-medium">Let's build your brand, expand your reach, and grow your business together.</p>
+      </div>
+    </div>
+
+    <div class="reveal relative">
+      <div class="absolute inset-0 flex items-center justify-center opacity-[.05] pointer-events-none">
+        <svg viewBox="0 0 100 100" class="h-72 w-72"><path d="M50 4 L88 20 V54 C88 76 71 93 50 100 C29 93 12 76 12 54 V20 Z" fill="none" stroke="#C9A24B" stroke-width="1.5"/></svg>
+      </div>
+      <div class="relative grid grid-cols-2 gap-4">
+        <div class="card p-6">
+          <p style="font-family: var(--font-display), sans-serif;" class="text-gold-400 font-semibold text-lg">Full-Service</p>
+          <p class="text-sm text-mist mt-1">Agency, under one roof</p>
+        </div>
+        <div class="card p-6">
+          <p style="font-family: var(--font-display), sans-serif;" class="text-gold-400 font-semibold text-lg">Tailored</p>
+          <p class="text-sm text-mist mt-1">Solutions for your goals</p>
+        </div>
+        <div class="card p-6">
+          <p style="font-family: var(--font-display), sans-serif;" class="text-gold-400 font-semibold text-lg">Data-Driven</p>
+          <p class="text-sm text-mist mt-1">Strategy behind every design</p>
+        </div>
+        <div class="card p-6">
+          <p style="font-family: var(--font-display), sans-serif;" class="text-gold-400 font-semibold text-lg">Trusted</p>
+          <p class="text-sm text-mist mt-1">Long-term growth partner</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="py-24 lg:py-32 bg-panel">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+    <div class="reveal max-w-2xl">
+      <span style="font-family: var(--font-display), sans-serif;" class="text-xs font-semibold uppercase tracking-[.28em] text-gold-400">What We Do</span>
+      <h2 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-parchment leading-tight">Our Services</h2>
+      <p class="mt-5 text-mist text-lg leading-relaxed">Everything your brand needs to look sharp and perform well — under one roof.</p>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="https://tally.so/r/kdjVK6" target="_blank" rel="noopener" aria-label="Learn more about Website Design & Development" class="reveal-batch card p-7 block group">
+        <div class="badge-hex">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2"/><line x1="2.5" y1="8.5" x2="21.5" y2="8.5"/><circle cx="5.6" cy="6.25" r=".55" fill="currentColor" stroke="none"/><circle cx="7.6" cy="6.25" r=".55" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-5 text-lg font-semibold text-parchment">Website Design & Development</h3>
+        <p class="mt-2.5 text-sm text-mist leading-relaxed">Fast, responsive, conversion-focused websites built to represent your brand beautifully across every device.</p>
+        <div class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-400">
+          Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+
+      <a href="https://tally.so/r/kdjVK6" target="_blank" rel="noopener" aria-label="Learn more about AI Automation" class="reveal-batch card p-7 block group">
+        <div class="badge-hex">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="13" height="13" rx="2"/><path d="M12 8.2 L13 11 L15.8 12 L13 13 L12 15.8 L11 13 L8.2 12 L11 11 Z"/><line x1="12" y1="2" x2="12" y2="5.5"/><line x1="12" y1="18.5" x2="12" y2="22"/><line x1="2" y1="12" x2="5.5" y2="12"/><line x1="18.5" y1="12" x2="22" y2="12"/></svg>
+        </div>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-5 text-lg font-semibold text-parchment">AI Automation</h3>
+        <p class="mt-2.5 text-sm text-mist leading-relaxed">Custom AI workflows that automate repetitive tasks, qualify leads, and keep your business running smoothly around the clock.</p>
+        <div class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-400">
+          Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+
+      <a href="https://tally.so/r/kdjVK6" target="_blank" rel="noopener" aria-label="Learn more about Video Editing" class="reveal-batch card p-7 block group">
+        <div class="badge-hex">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M3 9 L4.5 4 H19.5 L21 9"/><path d="M8 4.3 L6.3 9 M14 4.3 L12.3 9 M20 4.3 L18.3 9"/></svg>
+        </div>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-5 text-lg font-semibold text-parchment">Video Editing</h3>
+        <p class="mt-2.5 text-sm text-mist leading-relaxed">Clean, professional edits with expert color grading and sound design that transform raw footage into polished, story-driven content.</p>
+        <div class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-400">
+          Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+
+      <a href="https://tally.so/r/kdjVK6" target="_blank" rel="noopener" aria-label="Learn more about Video Clipping" class="reveal-batch card p-7 block group">
+        <div class="badge-hex">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.3 9 L15 12 L10.3 15 Z" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-5 text-lg font-semibold text-parchment">Video Clipping</h3>
+        <p class="mt-2.5 text-sm text-mist leading-relaxed">Long-form content repurposed into scroll-stopping short clips, optimized and ready for Reels, TikTok, and Shorts.</p>
+        <div class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-400">
+          Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section id="why-choose-us" class="py-24 lg:py-32 bg-ink">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+    <div class="reveal max-w-3xl">
+      <span style="font-family: var(--font-display), sans-serif;" class="text-xs font-semibold uppercase tracking-[.28em] text-gold-400">Why Platfronix</span>
+      <h2 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-parchment leading-tight">Why Choose Us</h2>
+      <p class="mt-5 text-mist text-lg leading-relaxed">At Platfronix, we are committed to helping businesses succeed through innovative digital solutions and creative branding. We don't just deliver services—we create strategies that help your business grow, attract customers, and build a lasting online presence.</p>
+      <p style="font-family: var(--font-display), sans-serif;" class="mt-8 text-xl font-semibold text-parchment">What Makes Us Different?</p>
+    </div>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="reveal-batch card p-6">
+        <span class="text-3xl">🚀</span>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-base font-semibold text-parchment">Complete Digital Solutions</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">From website development and logo design to business branding and advertising, we provide everything your business needs under one roof.</p>
+      </div>
+      <div class="reveal-batch card p-6">
+        <span class="text-3xl">🎯</span>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-base font-semibold text-parchment">Tailored for Your Business</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">Every business is unique. We create customized solutions that align with your goals, industry, and target audience.</p>
+      </div>
+      <div class="reveal-batch card p-6">
+        <span class="text-3xl">💡</span>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-base font-semibold text-parchment">Creative & Modern Designs</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">Our team focuses on clean, professional, and eye-catching designs that strengthen your brand identity and leave a lasting impression.</p>
+      </div>
+      <div class="reveal-batch card p-6">
+        <span class="text-3xl">📈</span>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-base font-semibold text-parchment">Growth-Focused Strategy</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">Our objective goes beyond creating beautiful designs—we develop solutions that help generate leads, increase visibility, and support long-term business growth.</p>
+      </div>
+      <div class="reveal-batch card p-6">
+        <span class="text-3xl">🤝</span>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-base font-semibold text-parchment">Client-Centered Approach</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">We believe in clear communication, transparency, and building long-term relationships by delivering reliable support and exceptional service.</p>
+      </div>
+      <div class="reveal-batch card p-6">
+        <span class="text-3xl">⭐</span>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-base font-semibold text-parchment">Quality You Can Trust</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">Every project is completed with attention to detail, using modern technologies and industry best practices to ensure high-quality results.</p>
+      </div>
+      <div class="reveal-batch card p-6">
+        <span class="text-3xl">⏱️</span>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-base font-semibold text-parchment">Timely Delivery</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">We respect your time and work efficiently to deliver projects on schedule without compromising quality.</p>
+      </div>
+      <div class="reveal-batch card p-6">
+        <span class="text-3xl">🌍</span>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-base font-semibold text-parchment">Your Long-Term Growth Partner</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">At Platfronix, our mission is to become more than a service provider—we strive to be a trusted partner that supports your business at every stage of its digital journey.</p>
+      </div>
+    </div>
+
+    <div class="reveal mt-12 text-center card py-8 px-6">
+      <p style="font-family: var(--font-display), sans-serif;" class="text-xl sm:text-2xl font-semibold text-parchment">Choose Platfronix to build a stronger brand, reach more customers, and unlock your business's full potential.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" class="py-24 lg:py-32 bg-panel">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+    <div class="reveal max-w-2xl">
+      <span style="font-family: var(--font-display), sans-serif;" class="text-xs font-semibold uppercase tracking-[.28em] text-gold-400">How We Work</span>
+      <h2 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-parchment leading-tight">Our Process</h2>
+      <p class="mt-5 text-mist text-lg leading-relaxed">At Platfronix, we keep our process simple, transparent, and focused on delivering the best results for your business.</p>
+    </div>
+
+    <div id="timelineWrap" class="mt-16 relative pl-16 sm:pl-20">
+      <div class="timeline-track"></div>
+      <div id="timelineFill" class="timeline-fill"></div>
+
+      <div class="process-step relative mb-14 last:mb-0">
+        <div class="badge-hex-filled absolute -left-16 sm:-left-20 top-0">1</div>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="text-xl font-semibold text-parchment">Contact Us</h3>
+        <p class="mt-2.5 text-mist leading-relaxed max-w-xl">Reach out to us through Website, Email, WhatsApp (Recommended), Instagram, Facebook, LinkedIn, or Whop. We'll respond quickly.</p>
+      </div>
+
+      <div class="process-step relative mb-14 last:mb-0">
+        <div class="badge-hex-filled absolute -left-16 sm:-left-20 top-0">2</div>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="text-xl font-semibold text-parchment">Consultation & Requirement Gathering</h3>
+        <p class="mt-2.5 text-mist leading-relaxed max-w-xl">We discuss your project in detail. Payment Terms: <span class="text-gold-400 font-medium">25% advance</span> required to begin. Remaining <span class="text-gold-400 font-medium">75%</span> payable upon successful completion and delivery.</p>
+      </div>
+
+      <div class="process-step relative mb-14 last:mb-0">
+        <div class="badge-hex-filled absolute -left-16 sm:-left-20 top-0">3</div>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="text-xl font-semibold text-parchment">Design, Development & Revisions</h3>
+        <p class="mt-2.5 text-mist leading-relaxed max-w-xl">We start working based on agreed requirements. You receive updates and up to 3 free revisions.</p>
+      </div>
+
+      <div class="process-step relative">
+        <div class="badge-hex-filled absolute -left-16 sm:-left-20 top-0">4</div>
+        <h3 style="font-family: var(--font-display), sans-serif;" class="text-xl font-semibold text-parchment">Final Approval & Delivery</h3>
+        <p class="mt-2.5 text-mist leading-relaxed max-w-xl">Once satisfied and the remaining payment is complete, we promptly deliver all files and services.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIVE REVIEWS ============ -->
+<section id="live-reviews" class="py-24 lg:py-32 bg-ink">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+    <div class="reveal max-w-2xl">
+      <span style="font-family: var(--font-display), sans-serif;" class="text-xs font-semibold uppercase tracking-[.28em] text-gold-400">Live Reviews</span>
+      <h2 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-parchment leading-tight">Real-Time Customer Feedback</h2>
+      <p class="mt-5 text-mist text-lg leading-relaxed">Worked with us recently? Leave a review below — it appears instantly for everyone to see.</p>
+    </div>
+
+    <div class="mt-14 grid lg:grid-cols-[.9fr_1.3fr] gap-8">
+      <form id="reviewForm" class="reveal card p-7 sm:p-8 h-fit">
+        <div>
+          <label for="rv-name" class="field-label">Client Name</label>
+          <input id="rv-name" name="name" type="text" required placeholder="Your full name" class="field" />
+        </div>
+        <div class="mt-6">
+          <label for="rv-role" class="field-label">Company / Role</label>
+          <input id="rv-role" name="role" type="text" required placeholder="e.g. Founder, Banjara Collection" class="field" />
+        </div>
+        <div class="mt-6">
+          <span class="field-label">Your Rating</span>
+          <div id="rvStars" class="star-rate" role="radiogroup" aria-label="Star rating">
+            <button type="button" data-value="1" role="radio" aria-checked="false" aria-label="1 star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg></button>
+            <button type="button" data-value="2" role="radio" aria-checked="false" aria-label="2 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg></button>
+            <button type="button" data-value="3" role="radio" aria-checked="false" aria-label="3 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg></button>
+            <button type="button" data-value="4" role="radio" aria-checked="false" aria-label="4 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg></button>
+            <button type="button" data-value="5" role="radio" aria-checked="false" aria-label="5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg></button>
+          </div>
+          <input type="hidden" id="rv-rating" name="rating" value="0" required />
+          <p id="rvRatingError" class="mt-2 text-xs text-gold-500 hidden">Please select a star rating.</p>
+        </div>
+        <div class="mt-6">
+          <label for="rv-message" class="field-label">Review Message</label>
+          <textarea id="rv-message" name="message" rows="4" required placeholder="Share your experience working with Platfronix…" class="field resize-none"></textarea>
+        </div>
+        <div class="mt-8">
+          <button type="submit" class="btn btn-primary w-full sm:w-auto justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+            Submit Review
+          </button>
+          <p id="rvSuccessMsg" class="mt-3 text-xs text-gold-400 hidden">Thanks — your review is now live below!</p>
+        </div>
+      </form>
+
+      <div>
+        <div id="liveReviewsGrid" class="grid sm:grid-cols-2 gap-6"></div>
+        <p id="liveReviewsEmpty" class="text-sm text-mist hidden">No live reviews yet — be the first to share your experience!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="testimonials" class="py-24 lg:py-32 bg-panel">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+    <div class="reveal max-w-2xl">
+      <span style="font-family: var(--font-display), sans-serif;" class="text-xs font-semibold uppercase tracking-[.28em] text-gold-400">Testimonials</span>
+      <h2 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-parchment leading-tight">What Our Clients Say</h2>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-6">
+      <div class="reveal-batch card p-7 relative">
+        <svg class="quote-mark absolute top-6 right-6 h-10 w-10" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 7C6.5 7 4 9.5 4 12.7c0 2.8 2 5 4.6 5 1.7 0 3-1.2 3-2.8 0-1.5-1.1-2.6-2.5-2.6-.3 0-.6.1-.8.1.2-1.6 1.7-3 3.4-3.2L11 7.1C10.5 7 10 7 9.5 7zm9 0c-3 0-5.5 2.5-5.5 5.7 0 2.8 2 5 4.6 5 1.7 0 3-1.2 3-2.8 0-1.5-1.1-2.6-2.5-2.6-.3 0-.6.1-.8.1.2-1.6 1.7-3 3.4-3.2L20 7.1C19.5 7 19 7 18.5 7z"/></svg>
+        <div class="flex gap-1 text-gold-400">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+        </div>
+        <p class="mt-4 text-parchment leading-relaxed">"Platfronix took our half-formed idea and turned it into a brand that finally feels like us. The new site has already brought in leads we wouldn't have found otherwise."</p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-sm font-semibold" style="background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600)); color: var(--color-ink); font-family: var(--font-display), sans-serif;">R M</div>
+          <div>
+            <p class="text-sm font-medium text-parchment">R. Mehta</p>
+            <p class="text-xs text-mist">Founder, retail startup</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-batch card p-7 relative">
+        <svg class="quote-mark absolute top-6 right-6 h-10 w-10" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 7C6.5 7 4 9.5 4 12.7c0 2.8 2 5 4.6 5 1.7 0 3-1.2 3-2.8 0-1.5-1.1-2.6-2.5-2.6-.3 0-.6.1-.8.1.2-1.6 1.7-3 3.4-3.2L11 7.1C10.5 7 10 7 9.5 7zm9 0c-3 0-5.5 2.5-5.5 5.7 0 2.8 2 5 4.6 5 1.7 0 3-1.2 3-2.8 0-1.5-1.1-2.6-2.5-2.6-.3 0-.6.1-.8.1.2-1.6 1.7-3 3.4-3.2L20 7.1C19.5 7 19 7 18.5 7z"/></svg>
+        <div class="flex gap-1 text-gold-400">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+        </div>
+        <p class="mt-4 text-parchment leading-relaxed">"Communication was clear from day one, the revisions were handled without any back and forth, and delivery was right on schedule. Exactly what we needed."</p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-sm font-semibold" style="background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600)); color: var(--color-ink); font-family: var(--font-display), sans-serif;">S K</div>
+          <div>
+            <p class="text-sm font-medium text-parchment">S. Kapoor</p>
+            <p class="text-xs text-mist">Owner, fitness studio</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-batch card p-7 relative">
+        <svg class="quote-mark absolute top-6 right-6 h-10 w-10" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 7C6.5 7 4 9.5 4 12.7c0 2.8 2 5 4.6 5 1.7 0 3-1.2 3-2.8 0-1.5-1.1-2.6-2.5-2.6-.3 0-.6.1-.8.1.2-1.6 1.7-3 3.4-3.2L11 7.1C10.5 7 10 7 9.5 7zm9 0c-3 0-5.5 2.5-5.5 5.7 0 2.8 2 5 4.6 5 1.7 0 3-1.2 3-2.8 0-1.5-1.1-2.6-2.5-2.6-.3 0-.6.1-.8.1.2-1.6 1.7-3 3.4-3.2L20 7.1C19.5 7 19 7 18.5 7z"/></svg>
+        <div class="flex gap-1 text-gold-400">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>
+        </div>
+        <p class="mt-4 text-parchment leading-relaxed">"What stood out was how much they cared about getting our story right before touching a single design element. It shows in the final work."</p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-sm font-semibold" style="background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600)); color: var(--color-ink); font-family: var(--font-display), sans-serif;">A F</div>
+          <div>
+            <p class="text-sm font-medium text-parchment">A. Fernandes</p>
+            <p class="text-xs text-mist">Marketing lead, realty group</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section id="cta" class="py-24 relative overflow-hidden bg-ink">
+  <div class="glow h-96 w-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="background: rgba(201,162,75,.14);"></div>
+  <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 relative">
+    <div class="reveal card p-10 sm:p-14 text-center relative overflow-hidden">
+      <div class="absolute inset-0 flex items-center justify-center opacity-[.06] pointer-events-none">
+        <svg viewBox="0 0 100 100" class="h-80 w-80"><path d="M50 4 L88 20 V54 C88 76 71 93 50 100 C29 93 12 76 12 54 V20 Z" fill="none" stroke="#C9A24B" stroke-width="1.2"/><path d="M50 28 L70 54 L50 80 L30 54 Z" fill="none" stroke="#C9A24B" stroke-width="1"/></svg>
+      </div>
+      <div class="relative">
+        <h2 style="font-family: var(--font-display), sans-serif;" class="text-3xl sm:text-4xl font-semibold text-parchment leading-tight">Let's Build Your Brand Together</h2>
+        <p class="mt-4 text-mist text-lg max-w-xl mx-auto">Get a free consultation and see how Platfronix can help your business grow, attract customers, and stand out online.</p>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <a href="https://wa.me/7996607257" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12.05 21.79a9.83 9.83 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.23C2.18 6.44 6.6 2 12.05 2c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 012.89 6.99c0 5.45-4.44 9.9-9.88 9.9zm8.41-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.15 1.59 5.95L0 24l6.31-1.65a11.88 11.88 0 005.68 1.45h.01c6.55 0 11.9-5.34 11.9-11.9a11.82 11.82 0 00-3.44-8.41z"/></svg>
+            WhatsApp Us
+          </a>
+          <a href="mailto:into.platfronix@gmail.com" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M2.5 6.5l9.5 7 9.5-7"/></svg>
+            Email Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 lg:py-32 bg-panel">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+    <div class="reveal max-w-2xl">
+      <span style="font-family: var(--font-display), sans-serif;" class="text-xs font-semibold uppercase tracking-[.28em] text-gold-400">Get In Touch</span>
+      <h2 style="font-family: var(--font-display), sans-serif;" class="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-parchment leading-tight">Start Your Project</h2>
+      <p class="mt-5 text-mist text-lg leading-relaxed">Tell us a bit about what you need — we'll respond quickly.</p>
+    </div>
+
+    <div class="mt-14 grid lg:grid-cols-[1.3fr_.9fr] gap-8">
+      <form id="contactForm" action="mailto:into.platfronix@gmail.com" method="post" enctype="text/plain" class="reveal card p-7 sm:p-10">
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <label for="cf-name" class="field-label">Name</label>
+            <input id="cf-name" name="name" type="text" required placeholder="Your full name" class="field" />
+          </div>
+          <div>
+            <label for="cf-email" class="field-label">Email</label>
+            <input id="cf-email" name="email" type="email" required placeholder="you@example.com" class="field" />
+          </div>
+        </div>
+        <div class="mt-6">
+          <label for="cf-subject" class="field-label">Subject</label>
+          <input id="cf-subject" name="subject" type="text" required placeholder="What can we help with?" class="field" />
+        </div>
+        <div class="mt-6">
+          <label for="cf-message" class="field-label">Message</label>
+          <textarea id="cf-message" name="message" rows="5" required placeholder="Tell us about your project…" class="field resize-none"></textarea>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <button type="button" id="sendWhatsapp" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12.05 21.79a9.83 9.83 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.23C2.18 6.44 6.6 2 12.05 2c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 012.89 6.99c0 5.45-4.44 9.9-9.88 9.9zm8.41-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.15 1.59 5.95L0 24l6.31-1.65a11.88 11.88 0 005.68 1.45h.01c6.55 0 11.9-5.34 11.9-11.9a11.82 11.82 0 00-3.44-8.41z"/></svg>
+            Send via WhatsApp
+          </button>
+          <button type="submit" id="sendEmail" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M2.5 6.5l9.5 7 9.5-7"/></svg>
+            Send via Email
+          </button>
+        </div>
+      </form>
+
+      <div class="reveal card p-7 sm:p-8 h-fit">
+        <h3 style="font-family: var(--font-display), sans-serif;" class="text-lg font-semibold text-parchment">Reach Us Directly</h3>
+        <ul class="mt-6 space-y-4">
+          <li class="flex items-center gap-3">
+            <span class="badge-hex !h-10 !w-10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="!h-4 !w-4"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M2.5 6.5l9.5 7 9.5-7"/></svg></span>
+            <a href="mailto:into.platfronix@gmail.com" class="text-sm text-mist hover:text-gold-400 transition-colors break-all">into.platfronix@gmail.com</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="badge-hex !h-10 !w-10"><svg viewBox="0 0 24 24" fill="currentColor" class="!h-4 !w-4"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48 0 1.46 1.07 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/><path d="M12.05 21.79a9.83 9.83 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.23C2.18 6.44 6.6 2 12.05 2c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 012.89 6.99c0 5.45-4.44 9.9-9.88 9.9zm8.41-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.15 1.59 5.95L0 24l6.31-1.65a11.88 11.88 0 005.68 1.45h.01c6.55 0 11.9-5.34 11.9-11.9a11.82 11.82 0 00-3.44-8.41z"/></svg></span>
+            <a href="https://wa.me/7996607257" target="_blank" rel="noopener" class="text-sm text-mist hover:text-gold-400 transition-colors">WhatsApp <span class="text-gold-500">(Recommended)</span></a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="badge-hex !h-10 !w-10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="!h-4 !w-4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></span>
+            <span class="text-sm text-mist">Instagram</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="badge-hex !h-10 !w-10"><svg viewBox="0 0 24 24" fill="currentColor" class="!h-4 !w-4"><path d="M22 12a10 10 0 10-11.5 9.9v-7H7.9V12h2.6V9.8c0-2.6 1.5-4 3.9-4 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0022 12z"/></svg></span>
+            <span class="text-sm text-mist">Facebook</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="badge-hex !h-10 !w-10"><svg viewBox="0 0 24 24" fill="currentColor" class="!h-4 !w-4"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1s2.5 1.12 2.5 2.5zM.22 8.24h4.56V23H.22V8.24zM8.16 8.24h4.37v2.02h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v8.12h-4.56v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.8v7.33H8.16V8.24z"/></svg></span>
+            <span class="text-sm text-mist">LinkedIn</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="badge-hex !h-10 !w-10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="!h-4 !w-4"><path d="M4 8h16l-1.5 12h-13z"/><path d="M8 8V6a4 4 0 018 0v2"/></svg></span>
+            <span class="text-sm text-mist">Whop</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-line bg-ink">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-14">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+      <div class="max-w-xs">
+        <div class="flex items-center gap-2.5">
+          <span class="relative inline-flex h-9 w-9 items-center justify-center">
+            <img src="Platfronix Elegant Crest Logo.png" alt="Platfronix crest logo" class="h-9 w-9 object-contain"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <svg viewBox="0 0 100 100" class="h-9 w-9" style="display:none" aria-hidden="true">
+              <path d="M50 4 L88 20 V54 C88 76 71 93 50 100 C29 93 12 76 12 54 V20 Z" fill="none" stroke="#C9A24B" stroke-width="3.2"/>
+              <path d="M50 28 L70 54 L50 80 L30 54 Z" fill="none" stroke="#C9A24B" stroke-width="2.4"/>
+              <circle cx="50" cy="54" r="3.6" fill="#C9A24B"/>
+            </svg>
+          </span>
+          <span style="font-family: var(--font-display), sans-serif;" class="text-lg font-semibold text-parchment">Platfronix</span>
+        </div>
+        <p class="mt-4 text-sm text-mist leading-relaxed">Where creativity meets strategy — helping businesses grow with confidence through premium digital solutions.</p>
+      </div>
+
+      <div class="flex gap-16">
+        <div>
+          <p style="font-family: var(--font-display), sans-serif;" class="text-sm font-semibold text-parchment">Quick Links</p>
+          <ul class="mt-4 space-y-3">
+            <li><a href="#home" class="text-sm text-mist hover:text-gold-400 transition-colors">Home</a></li>
+            <li><a href="#services" class="text-sm text-mist hover:text-gold-400 transition-colors">Services</a></li>
+            <li><a href="#contact" class="text-sm text-mist hover:text-gold-400 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p style="font-family: var(--font-display), sans-serif;" class="text-sm font-semibold text-parchment">Follow Us</p>
+          <div class="mt-4 flex gap-3">
+            <!-- Instagram and Facebook now link out live. YouTube and Whop below are still placeholders — replace href="#" with your live profile URLs when ready. -->
+            <a href="https://www.instagram.com/_platfronix_?igsh=MXV2dHhlOTVqY2M3bQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-gold-400 hover:text-gold-400 transition-colors">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61592244908677" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-gold-400 hover:text-gold-400 transition-colors">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M22 12a10 10 0 10-11.5 9.9v-7H7.9V12h2.6V9.8c0-2.6 1.5-4 3.9-4 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0022 12z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube" class="flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-gold-400 hover:text-gold-400 transition-colors">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-.9-1.9-.9-2.3-1C17.3 2.6 12 2.6 12 2.6h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2.1.9 2.6 1 1.9.2 8.1.3 8.1.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.1V7.9l6.4 3.1-6.4 3.1z"/></svg>
+            </a>
+            <a href="#" aria-label="Whop" class="flex h-10 w-10 items-center justify-center rounded-full border border-line text-mist hover:border-gold-400 hover:text-gold-400 transition-colors">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M4 8h16l-1.5 12h-13z"/><path d="M8 8V6a4 4 0 018 0v2"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-mist">© <span id="year"></span> Platfronix. All rights reserved.</p>
+      <p class="text-xs text-mist">Crafted with care.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  // ---------- Footer year ----------
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- Mobile menu ----------
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconBars = document.getElementById('iconBars');
+  const iconClose = document.getElementById('iconClose');
+
+  function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+    iconBars.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+  navToggle.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    iconBars.classList.toggle('hidden', isHidden);
+    iconClose.classList.toggle('hidden', !isHidden);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+
+  // ---------- Header scroll state + back to top ----------
+  const siteHeader = document.getElementById('siteHeader');
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    siteHeader.classList.toggle('nav-scrolled', window.scrollY > 30);
+    const showTop = window.scrollY > 560;
+    backToTop.classList.toggle('opacity-0', !showTop);
+    backToTop.classList.toggle('pointer-events-none', !showTop);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // ---------- Contact form ----------
+  const contactForm = document.getElementById('contactForm');
+  const waButton = document.getElementById('sendWhatsapp');
+
+  function getFormValues() {
+    return {
+      name: document.getElementById('cf-name').value.trim(),
+      email: document.getElementById('cf-email').value.trim(),
+      subject: document.getElementById('cf-subject').value.trim(),
+      message: document.getElementById('cf-message').value.trim(),
+    };
+  }
+  function buildMessage(v) {
+    return `New inquiry from the Platfronix website\n\nName: ${v.name}\nEmail: ${v.email}\nSubject: ${v.subject}\n\nMessage:\n${v.message}`;
+  }
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+    const v = getFormValues();
+    const subject = encodeURIComponent(v.subject || 'Website Inquiry - Platfronix');
+    const body = encodeURIComponent(buildMessage(v));
+    window.location.href = `mailto:into.platfronix@gmail.com?subject=${subject}&body=${body}`;
+  });
+
+  waButton.addEventListener('click', function () {
+    if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+    const v = getFormValues();
+    const text = encodeURIComponent(buildMessage(v));
+    window.open(`https://wa.me/7996607257?text=${text}`, '_blank', 'noopener');
+  });
+
+  // ---------- Live Reviews ----------
+  (function () {
+    const STORAGE_KEY = 'platfronixLiveReviews';
+    const starIcon = '<svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8-5.1-4.7 6.9-.8z"/></svg>';
+    const quoteMarkSvg = '<svg class="quote-mark absolute top-6 right-6 h-10 w-10" viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 7C6.5 7 4 9.5 4 12.7c0 2.8 2 5 4.6 5 1.7 0 3-1.2 3-2.8 0-1.5-1.1-2.6-2.5-2.6-.3 0-.6.1-.8.1.2-1.6 1.7-3 3.4-3.2L11 7.1C10.5 7 10 7 9.5 7zm9 0c-3 0-5.5 2.5-5.5 5.7 0 2.8 2 5 4.6 5 1.7 0 3-1.2 3-2.8 0-1.5-1.1-2.6-2.5-2.6-.3 0-.6.1-.8.1.2-1.6 1.7-3 3.4-3.2L20 7.1C19.5 7 19 7 18.5 7z"/></svg>';
+
+    const reviewForm = document.getElementById('reviewForm');
+    const grid = document.getElementById('liveReviewsGrid');
+    const emptyMsg = document.getElementById('liveReviewsEmpty');
+    const starsWrap = document.getElementById('rvStars');
+    const starButtons = Array.from(starsWrap.querySelectorAll('button'));
+    const ratingInput = document.getElementById('rv-rating');
+    const ratingError = document.getElementById('rvRatingError');
+    const successMsg = document.getElementById('rvSuccessMsg');
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function initials(name) {
+      return name.trim().split(/\s+/).slice(0, 2).map(w => w[0]?.toUpperCase() || '').join('') || '?';
+    }
+
+    function paintStars(value, isHover) {
+      starButtons.forEach(btn => {
+        const v = Number(btn.dataset.value);
+        btn.classList.toggle(isHover ? 'is-hover' : 'is-active', v <= value);
+        if (!isHover) btn.setAttribute('aria-checked', v === Number(ratingInput.value) ? 'true' : 'false');
+      });
+    }
+
+    starButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        ratingInput.value = btn.dataset.value;
+        ratingError.classList.add('hidden');
+        starButtons.forEach(b => b.classList.remove('is-hover'));
+        paintStars(Number(ratingInput.value), false);
+      });
+      btn.addEventListener('mouseenter', () => paintStars(Number(btn.dataset.value), true));
+      btn.addEventListener('mouseleave', () => paintStars(Number(ratingInput.value), false));
+    });
+
+    function getStoredReviews() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch { return []; }
+    }
+    function saveReviews(reviews) {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews)); } catch {}
+    }
+
+    function buildCard(review, { animate } = {}) {
+      const card = document.createElement('div');
+      card.className = 'card p-7 relative' + (animate ? ' review-enter' : '');
+      const starsHtml = Array.from({ length: 5 }, (_, i) =>
+        `<span class="${i < review.rating ? 'text-gold-400' : 'text-line'}">${starIcon}</span>`
+      ).join('');
+      card.innerHTML = `
+        ${quoteMarkSvg}
+        <div class="flex gap-1">${starsHtml}</div>
+        <p class="mt-4 text-parchment leading-relaxed">"${escapeHtml(review.message)}"</p>
+        <div class="mt-6 flex items-center gap-3">
+          <div class="h-10 w-10 rounded-full flex items-center justify-center text-sm font-semibold" style="background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600)); color: var(--color-ink); font-family: var(--font-display), sans-serif;">${escapeHtml(initials(review.name))}</div>
+          <div>
+            <p class="text-sm font-medium text-parchment">${escapeHtml(review.name)}</p>
+            <p class="text-xs text-mist">${escapeHtml(review.role)}</p>
+          </div>
+        </div>`;
+      return card;
+    }
+
+    function renderAll() {
+      const reviews = getStoredReviews();
+      grid.innerHTML = '';
+      emptyMsg.classList.toggle('hidden', reviews.length > 0);
+      reviews.forEach(r => grid.appendChild(buildCard(r)));
+    }
+
+    reviewForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('rv-name').value.trim();
+      const role = document.getElementById('rv-role').value.trim();
+      const message = document.getElementById('rv-message').value.trim();
+      const rating = Number(ratingInput.value);
+
+      if (!reviewForm.checkValidity()) { reviewForm.reportValidity(); return; }
+      if (!rating) { ratingError.classList.remove('hidden'); return; }
+
+      const review = { name, role, message, rating, date: new Date().toISOString() };
+      const reviews = getStoredReviews();
+      reviews.unshift(review);
+      saveReviews(reviews);
+
+      emptyMsg.classList.add('hidden');
+      const card = buildCard(review, { animate: true });
+      grid.prepend(card);
+
+      reviewForm.reset();
+      ratingInput.value = 0;
+      paintStars(0, false);
+      successMsg.classList.remove('hidden');
+      setTimeout(() => successMsg.classList.add('hidden'), 3500);
+    });
+
+    renderAll();
+  })();
+
+  // ---------- Motion (respects prefers-reduced-motion) ----------
+  gsap.registerPlugin(ScrollTrigger);
+  const mm = gsap.matchMedia();
+
+  mm.add('(prefers-reduced-motion: no-preference)', () => {
+
+    // Hero entrance: crest engraves itself, then headline/sub/buttons cascade in
+    const crestLines = gsap.utils.toArray('.crest-line');
+    crestLines.forEach(path => {
+      const len = path.getTotalLength ? path.getTotalLength() : 900;
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+    });
+
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    heroTl
+      .to(crestLines, { strokeDashoffset: 0, duration: 1.6, stagger: 0.14, ease: 'power2.inOut' }, 0.1)
+      .to('#crestCenter', { opacity: 1, scale: 1.15, duration: 0.5, ease: 'back.out(2)', transformOrigin: '50% 50%' }, 1.3)
+      .from('#heroEyebrow', { y: 18, opacity: 0, duration: 0.6 }, 0.2)
+      .from('.hero-line span', { yPercent: 110, opacity: 0, duration: 0.85, stagger: 0.14 }, 0.4)
+      .from('#heroSub', { y: 16, opacity: 0, duration: 0.7 }, 0.85)
+      .from('#heroButtons', { y: 16, opacity: 0, duration: 0.7 }, 0.95);
+
+    // Simple section reveals
+    gsap.utils.toArray('.reveal').forEach((el) => {
+      gsap.from(el, {
+        y: 26, opacity: 0, duration: 0.75, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 87%' }
+      });
+    });
+
+    // Batched card reveals (services / why-choose-us / testimonials)
+    ScrollTrigger.batch('.reveal-batch', {
+      start: 'top 88%',
+      onEnter: (batch) => gsap.from(batch, { y: 30, opacity: 0, duration: 0.7, stagger: 0.09, ease: 'power2.out' }),
+      once: true
+    });
+
+    // Process timeline: the connecting line traces down as the section scrolls
+    gsap.to('#timelineFill', {
+      height: '100%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#timelineWrap',
+        start: 'top 60%',
+        end: 'bottom 75%',
+        scrub: 0.6
+      }
+    });
+
+  });
+</script>
+</body>
+</html>
